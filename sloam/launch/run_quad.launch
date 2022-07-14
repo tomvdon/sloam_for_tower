@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-    <arg name="robot" default="tower"/>
+    <arg name="robot" default="quadcoptor"/>
 
-    <arg name="robot_frame_id" default="$(arg robot)/base_link"/>
+    <arg name="robot_frame_id" default="$(arg robot)/quadrotor"/>
     <arg name="vio_imu_frame_id" default="$(arg robot)/ovc_camera_link"/>
         <node pkg="tf2_ros" type="static_transform_publisher" name="init_odom_map_transform_pub" args="0 0 0 0 0 0 $(arg robot)/map $(arg robot)/odom"/>
-        <node pkg="tf2_ros" type="static_transform_publisher" name="init_camera_map_transform_pub" args="0 0 0 0 0 0 $(arg robot)/map camera_init"/>
-        <node pkg="tf2_ros" type="static_transform_publisher" name="init_camera_sensor_transform_pub" args="0 0 0 0 0 0 $(arg robot)/map os_sensor"/>
         <node pkg="tf2_ros" type="static_transform_publisher" name="init_map_world_transform_pub" args="0 0 0 0 0 0 world map"/>
         <node pkg="tf2_ros" type="static_transform_publisher" name="init_map_map_transform_pub" args="0 0 0 0 0 0 map $(arg robot)/map"/>
         <!-- ovc-imu to body transform -->

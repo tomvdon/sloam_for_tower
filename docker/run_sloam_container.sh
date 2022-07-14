@@ -1,6 +1,6 @@
-SLOAMWS="/home/gnardari/ros/sloam_ws"
+SLOAMWS="$HOME/ag_lab/sloam_ws"
 # BAGS_DIR='/media/gnardari/DATA/bags/sloam'
-BAGS_DIR='/home/gnardari/Documents/Ag/bags'
+BAGS_DIR="$HOME/ag_lab/bags"
 
 # docker run -it \
 #     --name="sloam_ros" \
@@ -35,5 +35,5 @@ docker run -it \
     --volume="$BAGS_DIR:/opt/bags" \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
     --volume="/home/$USER/repos:/home/$USER/repos" \
-    sloam/runtime:latest \
+    gnardari/sloam:latest \
     bash
