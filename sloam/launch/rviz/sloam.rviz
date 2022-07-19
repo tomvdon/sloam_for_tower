@@ -5,6 +5,9 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
+        - /Inputs1
+        - /Inputs1/Sim Lidar Cloud1
+        - /Inputs1/Odometry1
         - /Inputs1/Odometry1/Shape1
       Splitter Ratio: 0.5045871734619141
     Tree Height: 657
@@ -26,7 +29,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: Obs Tree Features
+    SyncSource: ""
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -59,7 +62,7 @@ Visualization Manager:
           Marker Topic: /sloam/debug/map_tree_models
           Name: Input Map Models
           Namespaces:
-            "": true
+            {}
           Queue Size: 100
           Value: true
         - Class: rviz/MarkerArray
@@ -67,7 +70,7 @@ Visualization Manager:
           Marker Topic: /sloam/debug/obs_tree_models
           Name: Transf. Obs
           Namespaces:
-            "": true
+            {}
           Queue Size: 100
           Value: true
         - Alpha: 1
@@ -175,7 +178,7 @@ Visualization Manager:
           Marker Topic: /sloam/debug/trajectory
           Name: Trajectory
           Namespaces:
-            points_and_lines: true
+            {}
           Queue Size: 1
           Value: true
         - Class: rviz/MarkerArray
@@ -199,7 +202,7 @@ Visualization Manager:
           Marker Topic: /sloam/map
           Name: Semantic Map
           Namespaces:
-            "": true
+            {}
           Queue Size: 1
           Value: true
       Enabled: true
@@ -264,7 +267,7 @@ Visualization Manager:
           Size (Pixels): 3
           Size (m): 0.05000000074505806
           Style: Flat Squares
-          Topic: /quadrotor/fake_lidar/cloud
+          Topic: /os_cloud_node/points
           Unreliable: false
           Use Fixed Frame: true
           Use rainbow: true
@@ -370,5 +373,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1920
-  X: 0
-  Y: 27
+  X: 103
+  Y: 121

@@ -7,7 +7,7 @@ sloam:
   max_ground_dist: 25.0 # max distance from sensor for ground point to be considered
   min_ground_dist: 0.0 # min distance from sensor for ground point to be considered
   max_lidar_dist: 20.0 # max distance from sensor for a point to be considered
-  min_landmark_height: 0.0 # if a tree is smaller than this, it will be discarded
+  min_landmark_height: 0.005 # if a tree is smaller than this, it will be discarded
   min_landmark_size: 1 # min number of trellis nodes for a tree
   min_vertex_size: 1 # min required number of point in a trellis node
   min_tree_models: 1 # min number of tree models in observation to perform pose estimation
@@ -21,13 +21,14 @@ sloam:
   add_new_tree_thresh_dist: 1.5 # tree must be at least Xm away from other to be added to the semantic map
   rough_tree_match_thresh: 2.5 # rough match before computing the more costly cylinder to cylinder dist
   tree_match_thresh: 0.5 # dist threshold between point and model to use in pose estimation
-  odom_freq_filter: 25  # Add every x odom messages to the queue. Target same freq. as lidar.E.g., if odom = 120Hz % 20 = 6 
-  min_odom_distance: 0.0
-  min_sloam_z: -100.0
-  map_frame_id:   map #camera_init
-  odom_frame_id:  camera_init #os_sensor
-  robot_frame_id: body # os_sensor
-  seg_model_path: /opt/bags/inf/models/farm_model.onnx # path to segmentation model
+  odom_freq_filter: 1  # Add every x odom messages to the queue. Target same freq. as lidar.E.g., if odom = 120Hz % 20 = 6 
+  min_odom_distance: 0.2
+  min_sloam_z: -100
+
+  map_frame_id: tower/map
+  odom_frame_id: camera_init
+  robot_frame_id: body
+  seg_model_path:  /opt/bags/inf/models/stable_bdarknet.onnx # /opt/bags/inf/models/farm_model.onnx # path to segmentation model
   seg_lidar_fov: 22.5 # lidar FOV
   seg_lidar_w: 2048 # lidar width
   seg_lidar_h: 64 # lidar height

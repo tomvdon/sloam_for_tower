@@ -26,7 +26,6 @@ docker run -it \
     --net="host" \
     --privileged \
     --rm \
-    --gpus="all" \
     --workdir="/opt/sloam_ws" \
     --env="DISPLAY=$DISPLAY" \
     --env="QT_X11_NO_MITSHM=1" \

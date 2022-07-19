@@ -101,34 +101,70 @@ bool Instance::computeVertexProperties(CloudT::Ptr &pc, Slash& filteredPoints, P
   return false;
 }
 
-void Instance::findTrees(const CloudT::Ptr pc,
-    pcl::PointCloud<pcl::Label>& euclidean_labels,
-    std::vector<pcl::PointIndices>& label_indices, std::vector<std::vector<TreeVertex>>& landmarks){
+// void Instance::findTrees(const CloudT::Ptr pc,
+//     pcl::PointCloud<pcl::Label>& euclidean_labels,
+//     std::vector<pcl::PointIndices>& label_indices, std::vector<std::vector<TreeVertex>>& landmarks){
 
-    for (size_t i = 0; i < label_indices.size(); i++){
-      if (label_indices.at(i).indices.size () > 80){
-        std::vector<TreeVertex> tree;
-        for (int row_idx = pc->height - 1; row_idx >= 0; --row_idx) {
-          CloudT::Ptr beam(new CloudT);
-          for (size_t col_idx = 0; col_idx < pc->width; ++col_idx) {
-            if(euclidean_labels.points[row_idx * pc->width + col_idx].label == i){
-              PointT p = pc->at(col_idx, row_idx);
-              beam->points.push_back(p);
-            }
-          }
-          if(beam->points.size() > 3){
-            TreeVertex v = computeTreeVertex(beam, i);
-            if(v.isValid) tree.push_back(v);
+//     for (size_t i = 0; i < label_indices.size(); i++){
+//       if (label_indices.at(i).indices.size () > 80){
+//         std::vector<TreeVertex> tree;
+//         for (int row_idx = pc->height - 1; row_idx >= 0; --row_idx) {
+//           CloudT::Ptr beam(new CloudT);
+//           for (size_t col_idx = 0; col_idx < pc->width; ++col_idx) {
+//             if(euclidean_labels.points[row_idx * pc->width + col_idx].label == i){
+//               PointT p = pc->at(col_idx, row_idx);
+//               beam->points.push_back(p);
+//             }
+//           }
+//           if(beam->points.size() > 3){
+//             TreeVertex v = computeTreeVertex(beam, i);
+//             if(v.isValid) tree.push_back(v);
+//           }
+//         }
+//         if(tree.size() > 16){
+//           if(tree.size() > 56) {
+//             tree.resize(56);
+//           }
+//           landmarks.push_back(tree);
+//         }
+//       }
+//     }
+// }
+
+void Instance::findTrees(const CloudT::Ptr pc,
+                         pcl::PointCloud<pcl::Label> &euclidean_labels,
+                         std::vector<pcl::PointIndices> &label_indices,
+                         std::vector<std::vector<TreeVertex>> &landmarks) {
+  for (size_t i = 0; i < label_indices.size(); i++) {
+    if (label_indices.at(i).indices.size() > 10) {
+      std::vector<TreeVertex> tree;
+      for (int row_idx = pc->height - 1; row_idx >= 0; --row_idx) {
+        CloudT::Ptr beam(new CloudT);
+        for (size_t col_idx = 0; col_idx < pc->width; ++col_idx) {
+          if (euclidean_labels.points[row_idx * pc->width + col_idx].label ==
+              i) {
+            PointT p = pc->at(col_idx, row_idx);
+            beam->points.push_back(p);
           }
         }
-        if(tree.size() > 16){
-          if(tree.size() > 56) {
-            tree.resize(56);
+        if (beam->points.size() > 0) {
+          TreeVertex v = computeTreeVertex(beam, i);
+          if (v.isValid) {
+            tree.push_back(v);
+            // std::cout << "v is ..." << v.points.size() << "\n";
           }
-          landmarks.push_back(tree);
         }
       }
+      if (tree.size() > 2) {
+        // std::cout << "tree size" << tree.size() << "\n";
+
+        if (tree.size() > 56) {
+          tree.resize(56);
+        }
+        landmarks.push_back(tree);
+      }
     }
+  }
 }
 
 void Instance::computeGraph(const CloudT::Ptr cloud, const CloudT::Ptr tree_cloud,
