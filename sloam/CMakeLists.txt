@@ -89,6 +89,11 @@ cc_binary(
   DEPS sloam_log sloam_base sloam_objects sloam_core sloam_viz sloam_segmentation
 )
 
+cc_binary(
+  NAME test_inference
+  SRCS "src/segmentation/test_inference.cpp" 
+  DEPS sloam_base sloam_segmentation)
+
 # TESTS
 if(BUILD_TESTING)
 enable_testing()

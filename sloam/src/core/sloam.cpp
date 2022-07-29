@@ -37,8 +37,11 @@ namespace sloam
   {
     double treeOut[3];
     double groundOut[3];
-    OptimizeXYYaw(poseEstimate, optimTrees, allTMatch, treeOut);
-    OptimizeZRollPitch(poseEstimate, optimGround, allGMatch, groundOut);
+    // //Dont Optim
+    // optimTrees = false;
+    // optimGround = false
+    OptimizeXYYaw(poseEstimate, false, allTMatch, treeOut);
+    OptimizeZRollPitch(poseEstimate, false, allGMatch, groundOut);
 
     // roll, pitch, yaw
     double q[4];
@@ -406,7 +409,10 @@ namespace sloam
                       (M_PI - abs(angles[0]) < 0.1 && M_PI - abs(angles[1]) < 0.1 && M_PI - abs(angles[2]) < 0.1);
         // ground should be under the robot
         bool heightCheck = (in.poseEstimate * ground.model.centroid)(2) < in.poseEstimate.translation()(2);
-        if (ground.isValid && angleCheck && heightCheck)
+        // std::cout<<"Ground Valid:"<<ground.isValid<<std::endl;
+        // std::cout<<"Angle Valid:"<<angleCheck<<std::endl;
+        // std::cout<<"Height Valid:"<<heightCheck<<std::endl;
+        if (ground.isValid)
           planes.push_back(ground);
       }
     }
@@ -489,6 +495,7 @@ namespace sloam
       std::vector<ObjectMatch<Cylinder>> treeMatches = matchFeatures(in.poseEstimate, landmarks, in.mapModels, fmParams_.treeMatchThresh);
       std::vector<ObjectMatch<Plane>> planeMatches = matchFeatures(in.poseEstimate, planes, prevGPlanes_, 1.0);
 
+      std::cout<<"THRESH: "<<fmParams_.treeMatchThresh<<std::endl;
       ROS_INFO("Num Tree feature matches: %ld", treeMatches.size());
       ROS_INFO("Num Ground feature Matches: %ld", planeMatches.size());
 
@@ -498,6 +505,8 @@ namespace sloam
       SE3 currPose = in.poseEstimate;
       bool treeCheck = landmarks.size() > fmParams_.minTreeModels && treeMatches.size() > 5 * fmParams_.featuresPerTree;
       bool groundCheck = planeMatches.size() > fmParams_.minGroundModels && planes.size() > minPlanes_;
+      //Bypass optimization, use only Odom
+
       if(fmParams_.twoStepOptim)
       {
         success = TwoStepOptimizePose(in.poseEstimate, treeCheck, groundCheck, treeMatches, planeMatches, currPose);

@@ -84,7 +84,7 @@ namespace sloam
   {
     visualization_msgs::MarkerArray tMarkerArray;
     visualization_msgs::Marker points, line_strip;
-    points.header.frame_id = line_strip.header.frame_id = "quadrotor/map";
+    points.header.frame_id = line_strip.header.frame_id = "tower/map";
     points.header.stamp = line_strip.header.stamp = ros::Time::now();
     points.ns = line_strip.ns = "points_and_lines";
     points.action = line_strip.action = visualization_msgs::Marker::ADD;
@@ -159,8 +159,8 @@ namespace sloam
       Scalar maxTreeRadius = 0.25;
       Scalar maxAxisTheta = 45;
       visualization_msgs::Marker marker;
-      marker.header.frame_id = "quadrotor/map";
-      // marker.header.frame_id = "quadrotor/map";
+      marker.header.frame_id = "tower/map";
+      // marker.header.frame_id = "tower/map";
       marker.header.stamp = ros::Time();
       marker.id = cylinderId;
       marker.type = visualization_msgs::Marker::CYLINDER;
@@ -206,7 +206,7 @@ namespace sloam
     for (auto i = cylinderId; i < cylinderId + 50; ++i)
     {
       visualization_msgs::Marker marker;
-      marker.header.frame_id = "quadrotor/map";
+      marker.header.frame_id = "tower/map";
       marker.header.stamp = ros::Time();
       marker.id = i;
       marker.type = visualization_msgs::Marker::CYLINDER;
@@ -230,7 +230,7 @@ namespace sloam
     for (auto i = idx; i < idx + 300; ++i)
     {
       visualization_msgs::Marker marker;
-      marker.header.frame_id = "quadrotor/map";
+      marker.header.frame_id = "tower/map";
       marker.header.stamp = ros::Time();
       marker.id = i;
       marker.type = visualization_msgs::Marker::CUBE;

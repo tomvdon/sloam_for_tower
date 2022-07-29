@@ -73,8 +73,8 @@ int main(int argc, char* argv[])
     // pcl::io::savePCDFileASCII ("/opt/bags/inf/pcds/ground.pcd", *ground);
 
     ////////////////////////////////
-    std::string realModelFilepath{"/opt/bags/inf/models/real_erfnet.onnx"};
-    std::string realCloudPath{"/opt/bags/inf/pcds/800m.pcd"};
+    std::string realModelFilepath{"/opt/bags/inf/models/farm_model.onnx"};
+    std::string realCloudPath{"/opt/bags/pcds/1810.637986170.pcd"};
     // // std::string realCloudPath{"/opt/bags/inf/pcds/s3_p1_f2_800.pcd"};
     auto realSegmenter = Segmentation(realModelFilepath, 22.5, -22.5, 2048, 64, 1, true);
 

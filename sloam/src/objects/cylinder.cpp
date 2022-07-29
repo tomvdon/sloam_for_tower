@@ -23,6 +23,12 @@ Cylinder::Cylinder(const std::vector<TreeVertex> vertices, const Plane &gplane, 
     bool validRadius = model.radius > 0.0;
     bool validTree = filter(fmParams.maxTreeRadius,
                             fmParams.maxAxisTheta, gplane);
+    // bool validTree = true;
+    std::cout<<"Valid Z:"<<validZ<<std::endl;
+    std::cout<<"Valid Radius:"<<validRadius<<std::endl;
+    std::cout<<"Valid Tree:"<<validTree<<std::endl;
+    std::cout<<"Valid Norm:"<<validNorm<<std::endl;
+
     isValid = (validZ && validRadius && validTree && validNorm);
   }
 }
@@ -106,7 +112,7 @@ void Cylinder::computeModel(const std::vector<TreeVertex> &landmarkVtxs,
   model.root(2) = bottomPt.z;
 
   // if tree is too short, we don't use it
-  if (pcl::geometry::squaredDistance(bottomPt, topPt) < 1.5 || tree->size() == 0)
+  if (pcl::geometry::squaredDistance(bottomPt, topPt) < 0.3 || tree->size() == 0)
   {
     model.radius = -1;
     return;
@@ -174,11 +180,12 @@ void Cylinder::computeModel(const std::vector<TreeVertex> &landmarkVtxs,
 
 Scalar Cylinder::distance(const CylinderParameters &tgt) const
 {
+  // std::cout<<"USING PRE DEFINED SAMPLE! "<<std::endl;
   // sample trees at pre-defined heights
   std::vector<Scalar> heights;
   heights.push_back(0.0);
-  heights.push_back(3.0);
-  heights.push_back(6.0);
+  heights.push_back(0.5);
+  heights.push_back(1.0);
 
   Scalar distance = 0.0;
   for (const auto &height : heights)
@@ -190,7 +197,7 @@ Scalar Cylinder::distance(const CylinderParameters &tgt) const
     Vector3 tgtPoint = tgt.root + tgt_t * tgt.ray;
     distance += (modelPoint - tgtPoint).norm();
   }
-  return distance / 3.0;
+  return distance / 0.5;
 };
 
 Scalar Cylinder::distance(const PointT &point) const

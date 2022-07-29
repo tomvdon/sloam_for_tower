@@ -165,8 +165,8 @@ std::vector<std::vector<float>> Segmentation::_doProjection(const std::vector<fl
 
 void Segmentation::_makeTensor(std::vector<std::vector<float>>& projected_data, std::vector<float>& tensor, std::vector<size_t>& invalid_idxs){
   // TODO LOAD THIS TOO
-  std::vector<float> _img_means = {12.97};
-  std::vector<float> _img_stds = {12.35};
+  std::vector<float> _img_means = {12.12};
+  std::vector<float> _img_stds = {12.32};
   // arkansas 
   // std::vector<float> _img_means = {12.97, -0.21, -0.13, 0.26, 942.62};
   // std::vector<float> _img_stds = {12.35, 12.04, 12.95, 2.86, 1041.79};
