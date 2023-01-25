@@ -7,6 +7,6 @@
         name="sloam_rviz" output="screen" args="-d $(find sloam)/launch/rviz/sloam.rviz"/>
     </group>
 
-    <node pkg="sloam" type="sloam_node" name="sloam" output="screen">
+    <node pkg="sloam" type="sloam_node" name="sloam" output="screen" launch-prefix="gdb -ex run --args">
     </node>
 </launch>

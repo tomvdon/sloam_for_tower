@@ -2,8 +2,8 @@
 <launch>
 
     <arg name="enable_rviz" default="true"/>
-    <rosparam file="$(find sloam)/params/sloam_tower.yaml" command="load" />
-    <rosparam file="$(find sloam)/params/ouster_tower.yaml" command="load" />
+    <rosparam file="$(find sloam)/params/sloam_tower_merced.yaml" command="load" />
+    <rosparam file="$(find sloam)/params/ouster_tower_merced.yaml" command="load" />
     <node pkg="sloam" type="sloam_inference_node" name="segmentation" output="screen">
     </node>
 

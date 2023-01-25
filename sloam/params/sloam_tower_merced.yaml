@@ -5,22 +5,22 @@ sloam:
   default_tree_radius: 0.05 # default tree radius if estimated value seems wrong (due to outliers for example)
   max_dist_to_centroid: 1.0 # consider points further than this parameter to the node centroid to be outliers
   max_ground_dist: 20.0 # max distance from sensor for ground point to be considered
-  min_ground_dist: 0.1 # min distance from sensor for ground point to be considered
+  min_ground_dist: 3 # min distance from sensor for ground point to be considered
   max_lidar_dist: 20.0 # max distance from sensor for a point to be considered
-  min_landmark_height: 0.0001 # if a tree is smaller than this, it will be discarded
-  min_landmark_size: 1 # min number of trellis nodes for a tree
-  min_vertex_size: 1 # min required number of point in a trellis node
-  min_tree_models: 1 # min number of tree models in observation to perform pose estimation
-  min_ground_models: 5 # min number of ground models in observation to perform pose estimation
+  min_landmark_height: 1.0 # if a tree is smaller than this, it will be discarded
+  min_landmark_size: 3 # min number of trellis nodes for a tree
+  min_vertex_size: 3 # min required number of point in a trellis node
+  min_tree_models: 3 # min number of tree models in observation to perform pose estimation
+  min_ground_models: 15 # min number of ground models in observation to perform pose estimation
   num_ground_features: 5 # number of points to keep per plane model
-  ground_radii_bins: 5 # 5 bins based on the distance from sensor
-  ground_theta_bins: 36 # 36 bins relative to angle around lidar
-  ground_match_thresh: 10.0 # threshold to match planes
+  ground_radii_bins: 2 # 5 bins based on the distance from sensor
+  ground_theta_bins: 10 # 36 bins relative to angle around lidar
+  ground_match_thresh: 1.0 # threshold to match planes
   ground_retain_thresh: 0.05 # keep bottom x% of the points per bin
-  features_per_tree: 10 # number of points to keep per tree model
+  features_per_tree: 50 # number of points to keep per tree model
   add_new_tree_thresh_dist: 10.0 # tree must be at least Xm away from other to be added to the semantic map
   rough_tree_match_thresh: 10.0 # rough match before computing the more costly cylinder to cylinder dist
-  tree_match_thresh: 0.001 # dist threshold between point and model to use in pose estimation
+  tree_match_thresh: 5.0 # dist threshold between point and model to use in pose estimation
   odom_freq_filter: 1  # Add every x odom messages to the queue. Target same freq. as lidar.E.g., if odom = 120Hz % 20 = 6 
   min_odom_distance: 0.2
   min_sloam_z: -100
@@ -28,7 +28,7 @@ sloam:
   map_frame_id: tower/map
   odom_frame_id: camera_init
   robot_frame_id: os_sensor
-  seg_model_path:  /opt/bags/inf/models/almond_max_model.onnx # /opt/bags/inf/models/farm_model.onnx # path to segmentation model
+  seg_model_path:  /opt/bags/inf/models/combined_model.onnx # /opt/bags/inf/models/farm_model.onnx # path to segmentation model
   seg_lidar_fov: 45 # lidar FOV
   seg_lidar_w: 2048 # lidar width
   seg_lidar_h: 128 # lidar height

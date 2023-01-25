@@ -27,7 +27,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: Input Sim
+    SyncSource: Trellis
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -197,7 +197,7 @@ Visualization Manager:
   Global Options:
     Background Color: 0; 0; 0
     Default Light: true
-    Fixed Frame: quadrotor
+    Fixed Frame: os_sensor
     Frame Rate: 30
   Name: root
   Tools:
@@ -221,7 +221,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 19.217376708984375
+      Distance: 16.427751541137695
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -237,9 +237,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.510400116443634
+      Pitch: -0.29959985613822937
       Target Frame: <Fixed Frame>
-      Yaw: 5.425686836242676
+      Yaw: 4.5256805419921875
     Saved: ~
 Window Geometry:
   Displays:
@@ -257,5 +257,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 1920
-  X: 0
-  Y: 27
+  X: -442
+  Y: 29
